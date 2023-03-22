@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.neobrahma.portfolio.data.database.room.AppDatabase
 import com.neobrahma.portfolio.data.database.room.filter.FilterDao
+import com.neobrahma.portfolio.data.database.room.information.InformationDao
 import com.neobrahma.portfolio.data.database.room.portofolio.PortfolioDao
+import com.neobrahma.portfolio.data.database.room.tree.TreeDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +27,18 @@ object RoomModule {
     @Provides
     fun provideFilterDAO(appDatabase: AppDatabase): FilterDao {
         return appDatabase.filterDAO()
+    }
+
+    @Singleton
+    @Provides
+    fun provideInformationDAO(appDatabase: AppDatabase): InformationDao {
+        return appDatabase.informationDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideTreeDAO(appDatabase: AppDatabase): TreeDao {
+        return appDatabase.treeDAO()
     }
 
     @Provides

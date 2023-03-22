@@ -12,15 +12,8 @@ import com.neobrahma.portfolio.presentation.tree.TreeView
 @Composable
 fun ProjectScreen(
     navController: NavController,
-    companyId: Int,
-    projectId: Int,
     viewModel: HomeViewModel, modifier: Modifier
 ) {
     val uiState by viewModel.uiStateProject.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.initProjectScreen(companyId, projectId)
-    }
-
     TreeView(modifier, navController, uiState)
 }

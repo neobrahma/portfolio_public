@@ -5,6 +5,8 @@ import com.neobrahma.portfolio.presentation.Utils
 import com.neobrahma.portfolio.presentation.tree.TreeMapper
 import com.neobrahma.portfolio.presentation.tree.model.Action
 import com.neobrahma.portfolio.presentation.tree.model.Tree
+import com.neobrahma.portfolio.presentation.tree.project.ClientDestination
+import com.neobrahma.portfolio.presentation.tree.project.ProjectDestination
 import com.neobrahma.portfolio.ui.R
 import com.neobrahma.portfolio.ui.component.dot.DotUI
 import javax.inject.Inject
@@ -21,7 +23,6 @@ class CompanyMapper @Inject constructor(
                 mapperCompanyToUI(company),
                 Action.PopBackStack
             )
-
         )
 
         company.clients.forEachIndexed { index, data ->
@@ -29,8 +30,10 @@ class CompanyMapper @Inject constructor(
                 Tree.PrimaryItem(
                     DotUI(colors = mapperClientToDotUi(index == 0)),
                     mapperClientToUI(data, isClosable = false, isOpenable = true),
-                    Action.Navigate(
-                        route = "company/${company.companyId}/client/${data.clientId}"
+                    Action.NavigateFromCompany(
+                        route = ClientDestination.destination,
+                        ids = listOf(company.companyId, data.clientId),
+                        isClient = true
                     )
                 )
             )
@@ -41,8 +44,9 @@ class CompanyMapper @Inject constructor(
                 Tree.PrimaryItem(
                     DotUI(colors = mapperProjectToDotUi(index == 0, company.clients.isNotEmpty())),
                     mapperProjectToUI(data, isClosable = false, isOpenable = true),
-                    Action.Navigate(
-                        route = "company/${company.companyId}/project/${data.id}"
+                    Action.NavigateFromCompany(
+                        route = ProjectDestination.destination,
+                        ids = listOf(company.companyId, data.id)
                     )
                 )
             )

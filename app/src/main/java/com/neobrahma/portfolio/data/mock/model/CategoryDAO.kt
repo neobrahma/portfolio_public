@@ -1,6 +1,6 @@
 package com.neobrahma.portfolio.data.mock.model
 
 data class CategoryDAO(
-    val id: Int,
+    val categoryId: Int,
     val label: String
 )

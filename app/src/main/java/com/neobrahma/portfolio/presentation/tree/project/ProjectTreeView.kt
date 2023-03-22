@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.neobrahma.portfolio.presentation.tree.model.Action
 import com.neobrahma.portfolio.presentation.tree.model.Tree
+import com.neobrahma.portfolio.presentation.tree.project.ProjectUiState
 import com.neobrahma.portfolio.ui.component.LoaderView
 import com.neobrahma.portfolio.ui.component.item.context.ContextItemView
 import com.neobrahma.portfolio.ui.component.item.primary.PrimaryItemView
@@ -18,17 +19,10 @@ import com.neobrahma.portfolio.ui.component.item.task.TaskItemView
 fun TreeView(
     modifier: Modifier,
     navController: NavController,
-    uiState: HomeUiState
+    uiState: ProjectUiState
 ) {
     when (uiState) {
-        is HomeUiState.DisplayTreePrimary -> {
-            DisplayTreeView(
-                modifier,
-                navController,
-                uiState.tree
-            )
-        }
-        is HomeUiState.DisplayTree -> {
+        is ProjectUiState.DisplayTree -> {
             DisplayTreeView(
                 modifier,
                 navController,
@@ -68,11 +62,8 @@ fun DisplayTreeView(
                                         launchSingleTop = true
                                     }
                                 }
-                                is Action.PopUpToFrom -> {
-                                    navController.navigate(action.routeTo) {
-                                        popUpTo(action.routeFrom) { inclusive = action.inclusive }
-                                        launchSingleTop = true
-                                    }
+                                else ->{
+
                                 }
                             }
                         },

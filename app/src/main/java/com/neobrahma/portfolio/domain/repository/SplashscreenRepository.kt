@@ -1,6 +1,7 @@
 package com.neobrahma.portfolio.domain.repository
 
-interface VersionRepository {
+interface SplashscreenRepository {
+    suspend fun checkoutPortfolio()
     suspend fun getLocalVersion(): Int
     suspend fun getRemoteVersion(): Int
     suspend fun updateVersion()

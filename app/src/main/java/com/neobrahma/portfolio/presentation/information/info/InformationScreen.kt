@@ -4,10 +4,15 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -15,14 +20,20 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.neobrahma.portfolio.R
+import com.neobrahma.portfolio.presentation.information.info.model.InformationUI
+import com.neobrahma.portfolio.presentation.information.info.model.LegendUi
 import com.neobrahma.portfolio.ui.component.background.BackgroundItemView
 import com.neobrahma.portfolio.ui.component.background.BackgroundPrimaryItemView
+import com.neobrahma.portfolio.ui.component.camembert.Camembert
 import com.neobrahma.portfolio.ui.component.item.primary.PrimaryItemUI
+import com.neobrahma.portfolio.ui.component.square.SquareView
 import com.neobrahma.portfolio.ui.shape.OctagonShape
 
 @Composable
@@ -41,8 +52,16 @@ fun InformationScreen() {
 
 @Composable
 fun Information(
-    modifier: Modifier
+    modifier: Modifier,
+    viewModel: InformationViewModel = hiltViewModel()
 ) {
+
+    val uiStateInformation by viewModel.uiStateCompanies.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.initInformationScreen()
+    }
+
     Column(
         modifier = modifier.verticalScroll(
             state = rememberScrollState()
@@ -59,6 +78,7 @@ fun Information(
                 color = R.color.red
             )
         )
+        StatisticalStacks(uiStateInformation)
         ContactView()
         PresentationView()
         DegreeView()
@@ -247,6 +267,91 @@ fun ContactView() {
                     height = Dimension.fillToConstraints
                 }
         )
+    }
+}
+
+@Composable
+fun StatisticalStacks(list: List<InformationUI>) {
+    LazyRow {
+        items(list) {
+            StatisticalStack(it)
+        }
+    }
+}
+
+@Composable
+fun StatisticalStack(stack: InformationUI) {
+    ConstraintLayout(
+        modifier = Modifier
+            .height(240.dp)
+            .width(192.dp)
+    ) {
+        val (contentRef, camembertRef, backgroundRef) = createRefs()
+
+        val startGuideline = createGuidelineFromStart(32.dp)
+        val endGuideline = createGuidelineFromEnd(32.dp)
+        val topGuideline = createGuidelineFromTop(16.dp)
+        val bottomGuideline = createGuidelineFromBottom(24.dp)
+
+        Column(
+            modifier = Modifier
+                .constrainAs(contentRef) {
+                    start.linkTo(startGuideline)
+                    end.linkTo(endGuideline)
+                    top.linkTo(topGuideline)
+                    width = Dimension.fillToConstraints
+                    height = Dimension.wrapContent
+                }
+        ) {
+            Text(
+                text = stack.categoryLabel,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.subtitle1,
+            )
+            LegendView(stack.legends)
+        }
+
+        Camembert(
+            modifier = Modifier
+                .constrainAs(camembertRef) {
+                    start.linkTo(startGuideline)
+                    end.linkTo(endGuideline)
+                    bottom.linkTo(bottomGuideline)
+                    width = Dimension.wrapContent
+                    height = Dimension.wrapContent
+                },
+            stack.camemberts
+        )
+
+        BackgroundItemView(
+            modifier = Modifier
+                .constrainAs(backgroundRef) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    start.linkTo(parent.start)
+                    end.linkTo(parent.end)
+                    width = Dimension.fillToConstraints
+                    height = Dimension.fillToConstraints
+                }
+        )
+    }
+}
+
+@Composable
+fun LegendView(stacks: List<LegendUi>) {
+    Column {
+        stacks.forEach {
+            Row {
+                SquareView(it.arrayColor)
+                Text(
+                    text = it.stackLabel,
+                    style = MaterialTheme.typography.subtitle2,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+        }
     }
 }
 

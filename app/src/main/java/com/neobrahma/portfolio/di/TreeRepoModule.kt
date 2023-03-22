@@ -1,7 +1,7 @@
 package com.neobrahma.portfolio.di
 
 import com.neobrahma.portfolio.data.TreeDataSource
-import com.neobrahma.portfolio.data.mock.MockDataSourceImpl
+import com.neobrahma.portfolio.data.database.TreeLocalDataSourceImpl
 import com.neobrahma.portfolio.data.repository.TreeRepositoryImpl
 import com.neobrahma.portfolio.domain.repository.TreeRepository
 import dagger.Binds
@@ -20,5 +20,5 @@ interface TreeRepoModule {
 
     @Singleton
     @Binds
-    fun bindTreeDataSource(impl: MockDataSourceImpl): TreeDataSource
+    fun bindTreeDataSource(impl: TreeLocalDataSourceImpl): TreeDataSource
 }

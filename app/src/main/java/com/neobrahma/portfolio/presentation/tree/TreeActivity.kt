@@ -15,10 +15,7 @@ class TreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PortfolioTheme {
-                TreeApp(
-                    Modifier
-                        .fillMaxSize()
-                )
+                TreeApp()
             }
         }
     }

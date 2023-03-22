@@ -1,4 +1,4 @@
-package com.neobrahma.portfolio.data.database.room.portofolio
+package com.neobrahma.portfolio.data.database.room.tree
 
 import androidx.room.Embedded
 import androidx.room.Junction

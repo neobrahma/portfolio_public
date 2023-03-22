@@ -1,7 +1,10 @@
 package com.neobrahma.portfolio.presentation.tree.companies
 
 import android.content.Intent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,7 +21,10 @@ import com.neobrahma.portfolio.R
 import com.neobrahma.portfolio.presentation.filter.FilterActivity
 import com.neobrahma.portfolio.presentation.information.InformationActivity
 import com.neobrahma.portfolio.presentation.tree.HomeViewModel
-import com.neobrahma.portfolio.presentation.tree.TreeView
+import com.neobrahma.portfolio.presentation.tree.model.Action
+import com.neobrahma.portfolio.presentation.tree.model.Tree
+import com.neobrahma.portfolio.ui.component.LoaderView
+import com.neobrahma.portfolio.ui.component.item.primary.PrimaryItemView
 
 @Composable
 fun CompaniesScreen(navController: NavController, viewModel: HomeViewModel, modifier: Modifier) {
@@ -101,11 +107,53 @@ fun CompaniesContent(
     viewModel: HomeViewModel
 ) {
 
-    val uiState by viewModel.uiState.collectAsState()
+    val uiStateCompanies by viewModel.uiStateCompanies.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.initHomeScreen()
     }
-    TreeView(modifier, navController, uiState)
 
+    when (val uiState = uiStateCompanies) {
+        is CompaniesUiState.DisplayTree -> {
+            DisplayTreeView(
+                modifier,
+                navController,
+                uiState.tree,
+                viewModel
+            )
+        }
+        is CompaniesUiState.DisplayLoader -> {
+            LoaderView(modifier)
+        }
+    }
+}
+
+@Composable
+fun DisplayTreeView(
+    modifier: Modifier,
+    navController: NavController,
+    tree: List<Tree.PrimaryItem>,
+    viewModel: HomeViewModel
+) {
+    LazyColumn(
+        modifier = modifier
+    ) {
+        items(tree) {
+            PrimaryItemView(
+                Modifier.clickable {
+                    when (val action = it.action) {
+                        is Action.Navigate -> {
+                            viewModel.initCompanyScreen(action.ids[0])
+                            navController.navigate(action.route)
+                        }
+                        else -> {
+
+                        }
+                    }
+                },
+                it.dotUI,
+                it.primaryItemUI
+            )
+        }
+    }
 }

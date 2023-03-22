@@ -1,88 +1,68 @@
 package com.neobrahma.portfolio.presentation.tree
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.neobrahma.portfolio.presentation.tree.client.ClientScreen
 import com.neobrahma.portfolio.presentation.tree.companies.CompaniesScreen
 import com.neobrahma.portfolio.presentation.tree.company.CompanyScreen
-import com.neobrahma.portfolio.presentation.tree.project.ProjectClientScreen
-import com.neobrahma.portfolio.presentation.tree.project.ProjectScreen
+import com.neobrahma.portfolio.presentation.tree.project.*
 
 @Composable
 fun TreeApp(
-    modifier: Modifier,
+    modifier: Modifier = Modifier.fillMaxSize(),
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val navController = rememberNavController()
 
     Surface {
-        NavHost(navController = navController, startDestination = "home") {
+        NavHost(
+            navController = navController,
+            startDestination = CompaniesDestination.destination
+        ) {
             composable(
-                route = "home"
+                route = CompaniesDestination.destination
             )
             {
                 CompaniesScreen(navController, viewModel, modifier)
             }
             composable(
-                route = "company/{companyId}",
-                arguments = listOf(navArgument("companyId") { type = NavType.IntType })
+                route = CompanyDestination.destination
             ) {
                 CompanyScreen(
                     navController,
-                    it.arguments?.getInt("companyId") ?: 0,
                     viewModel,
                     modifier
                 )
             }
             composable(
-                route = "company/{companyId}/client/{clientId}",
-                arguments = listOf(
-                    navArgument("companyId") { type = NavType.IntType },
-                    navArgument("clientId") { type = NavType.IntType })
+                route = ClientDestination.destination
             ) {
                 ClientScreen(
                     navController,
-                    it.arguments?.getInt("companyId") ?: 0,
-                    it.arguments?.getInt("clientId") ?: 0,
                     viewModel,
                     modifier
                 )
             }
             composable(
-                route = "company/{companyId}/client/{clientId}/project/{projectId}",
-                arguments = listOf(
-                    navArgument("companyId") { type = NavType.IntType },
-                    navArgument("clientId") { type = NavType.IntType },
-                    navArgument("projectId") { type = NavType.IntType },
-                )
+                route = ProjectClientDestination.destination
             ) {
                 ProjectClientScreen(
                     navController,
-                    it.arguments?.getInt("companyId") ?: 0,
-                    it.arguments?.getInt("clientId") ?: 0,
-                    it.arguments?.getInt("projectId") ?: 0,
                     viewModel,
                     modifier
                 )
             }
             composable(
-                route = "company/{companyId}/project/{projectId}",
-                arguments = listOf(
-                    navArgument("companyId") { type = NavType.IntType },
-                    navArgument("projectId") { type = NavType.IntType },
-                )
+                route = ProjectDestination.destination
             ) {
                 ProjectScreen(
                     navController,
-                    it.arguments?.getInt("companyId") ?: 0,
-                    it.arguments?.getInt("projectId") ?: 0,
                     viewModel,
                     modifier
                 )

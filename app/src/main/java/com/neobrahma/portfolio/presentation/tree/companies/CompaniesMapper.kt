@@ -5,6 +5,7 @@ import com.neobrahma.portfolio.presentation.Utils
 import com.neobrahma.portfolio.presentation.tree.TreeMapper
 import com.neobrahma.portfolio.presentation.tree.model.Action
 import com.neobrahma.portfolio.presentation.tree.model.Tree
+import com.neobrahma.portfolio.presentation.tree.project.CompanyDestination
 import com.neobrahma.portfolio.ui.R
 import com.neobrahma.portfolio.ui.component.dot.DotUI
 import javax.inject.Inject
@@ -17,18 +18,13 @@ class CompaniesMapper @Inject constructor(
 
         companies.forEach { data ->
 
-            val route = "company/${data.companyId}"
-//            if (data.projects.size == 1 && data.clients.isEmpty()) {
-//                "company/${data.companyId}/project/${data.projects[0].id}"
-//            } else {
-//                "company/${data.companyId}"
-//            }
+            val route = CompanyDestination.destination
 
             companiesUI.add(
                 Tree.PrimaryItem(
                     DotUI(colors = listOf(utils.getColor(R.color.purple))),
                     mapperCompanyToUI(data, isClosable = false, isOpenable = true),
-                    Action.Navigate(route)
+                    Action.Navigate(route, listOf(data.companyId))
                 )
             )
         }

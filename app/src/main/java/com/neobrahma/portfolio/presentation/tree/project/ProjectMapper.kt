@@ -23,7 +23,7 @@ class ProjectMapper @Inject constructor(
             Tree.PrimaryItem(
                 DotUI(colors = listOf(utils.getColor(R.color.purple))),
                 mapperCompanyToUI(companyData),
-                Action.PopUpTo("home")
+                Action.PopUpTo(CompaniesDestination.destination)
             )
         )
 

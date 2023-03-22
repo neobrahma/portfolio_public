@@ -2,6 +2,13 @@ package com.neobrahma.portfolio.data.mock
 
 import com.neobrahma.portfolio.data.mock.model.*
 
+data class PortfolioDAO(
+    val categories: List<CategoryDAO>,
+    val stacks: List<StackDAO>,
+    val companies: List<CompanyDAO>,
+)
+
+
 val categories = listOf(
     CategoryDAO(1, "OS"),
     CategoryDAO(2, "IDEs"),
@@ -67,7 +74,7 @@ val stacks = listOf(
     StackDAO(36, "Agile", "logo_default", 12)
 )
 
-val testCompany = listOf(
+val companies = listOf(
     CompanyDAO(
         companyId = 14,
         name = "Neo Brahma Studio",
@@ -93,7 +100,7 @@ val testCompany = listOf(
                             "fix",
                             "etc, etc"
                         ),
-                        stacks = listOf(2, 4, 6, 7, 8, 14, 15, 16, 18, 25, 26, 27, 34, 36)
+                        stacks = listOf(2, 4, 6, 7, 8, 14, 15, 16, 18, 25, 26, 27, 34, 36, 28)
                     )
                 )
             ),
@@ -167,7 +174,7 @@ val testCompany = listOf(
                     "fix",
                     "etc, etc"
                 ),
-                stacks = listOf(2,4, 6, 8,34)
+                stacks = listOf(2, 4, 6, 8, 34)
             ),
             ProjectDAO(
                 id = 25,
@@ -180,7 +187,7 @@ val testCompany = listOf(
                     "fix",
                     "etc, etc"
                 ),
-                stacks = listOf(2,4, 6, 8,34)
+                stacks = listOf(2, 4, 6, 8, 34)
             ),
             ProjectDAO(
                 id = 20,
@@ -192,7 +199,7 @@ val testCompany = listOf(
                     "Developpement de l'application from scratch",
                     "Developpement d'un API Rest"
                 ),
-                stacks = listOf(2,4,6,8,14,15,17,19,34)
+                stacks = listOf(2, 4, 6, 8, 14, 15, 17, 19, 34)
             ),
             ProjectDAO(
                 id = 19,
@@ -205,7 +212,7 @@ val testCompany = listOf(
                     "fix",
                     "etc, etc"
                 ),
-                stacks = listOf(2,4, 6, 8,34)
+                stacks = listOf(2, 4, 6, 8, 34)
             )
         )
     ),
@@ -596,5 +603,10 @@ val testCompany = listOf(
             )
         )
     )
+)
 
+val portfolioDAO = PortfolioDAO(
+    categories = categories,
+    stacks = stacks,
+    companies = companies
 )
