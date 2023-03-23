@@ -52,5 +52,5 @@ Sur l'ecran tree, faut que je verifie quelque chose, mais il arrive que mon arbr
 
 Concernant les icones "Android", les icones seront stocké sur dans le web et non dans l'application comme maintenant, et seront chargé via une librairie equivalente à Picasso mais pour Compose.
 
-Apres cela, j'ai prevu de transformer mon projet sous une archi modulaire, et realiser mes TUs en derniers.
+Apres cela, j'ai prevu de transformer mon projet sous une archi modulaire avec du deeplinking, et realiser mes TUs en derniers.
 Puis decouvrir Bitrise pour l'integration continue et la publication de mon application sur le store.
