@@ -8,10 +8,10 @@ class CheckoutPortfolioUseCase @Inject constructor(
     private val splashscreenRepository: SplashscreenRepository
 ) {
 
-    suspend operator fun invoke(): CheckoutPortfolioState {
+    suspend operator fun invoke(isInternet : Boolean): CheckoutPortfolioState {
         val localVersion = splashscreenRepository.getLocalVersion()
         if (localVersion == 0) {
-            return if (isInternet()) {
+            return if (isInternet) {
                 splashscreenRepository.checkoutPortfolio()
                 splashscreenRepository.updateVersion()
                 CheckoutPortfolioState.Continue
@@ -19,7 +19,7 @@ class CheckoutPortfolioUseCase @Inject constructor(
                 CheckoutPortfolioState.Error
             }
         } else {
-            if (isInternet()) {
+            if (isInternet) {
                 val remoteVersion = splashscreenRepository.getRemoteVersion()
                 if (remoteVersion > localVersion) {
                     //update DB
@@ -28,10 +28,6 @@ class CheckoutPortfolioUseCase @Inject constructor(
             }
             return CheckoutPortfolioState.Continue
         }
-    }
-
-    private fun isInternet(): Boolean {
-        return true
     }
 
 }

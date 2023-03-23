@@ -33,4 +33,5 @@ class SplashscreenRepositoryImpl @Inject constructor(
     override suspend fun updateVersion() {
         localDataSource.updateVersion()
     }
+
 }

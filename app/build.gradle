@@ -74,6 +74,9 @@ dependencies {
     implementation("androidx.gridlayout:gridlayout:1.0.0")
 
     testImplementation "junit:junit:$junit"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
+
     androidTestImplementation "androidx.test.ext:junit:$junit_ext"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core"
 }
