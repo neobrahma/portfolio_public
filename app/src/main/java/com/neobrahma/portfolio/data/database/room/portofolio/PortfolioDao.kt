@@ -9,10 +9,10 @@ import com.neobrahma.portfolio.data.database.room.table.crossref.ProjectStackCro
 interface PortfolioDao {
 
     @Insert
-    suspend fun insertAllStack(users: List<Stack>)
+    suspend fun insertAllStack(stacks: List<Stack>)
 
     @Insert
-    suspend fun insertAllCategory(users: List<Category>)
+    suspend fun insertAllCategory(categories: List<Category>)
 
     @Insert
     suspend fun insertCompany(company: Company)

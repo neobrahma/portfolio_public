@@ -30,14 +30,14 @@ class TreeLocalDataSourceImpl @Inject constructor(
                         val projectRaw = room.getProject(projectId)
                         val project = mapProject(projectRaw)
                         val ownerId = projectRaw.project.ownerId
-                        if (ownerId < 100) {
+                        if (ownerId < 1000) {
                             if (mapProjectToCompany.containsKey(ownerId)) {
                                 mapProjectToCompany[ownerId]!!.add(project)
                             } else {
                                 mapProjectToCompany[ownerId] = mutableListOf(project)
                             }
                         } else {
-                            val companyId: Int = ownerId / 100
+                            val companyId: Int = ownerId / 1000
                             if (!mapProjectToClient.containsKey(companyId)) {
                                 mapProjectToClient[companyId] = mutableMapOf(
                                     ownerId to mutableListOf(projectRaw)

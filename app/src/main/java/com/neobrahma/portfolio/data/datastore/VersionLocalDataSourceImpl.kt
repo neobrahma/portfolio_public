@@ -16,11 +16,6 @@ class VersionLocalDataSourceImpl @Inject constructor(
 
     override suspend fun getVersion(): Int {
         return dataStore.data.first()[VERSION_REMOTE_DB]?:0
-//        return dataStore.data
-//            .map { preferences ->
-//                // No type safety.
-//                preferences[VERSION_REMOTE_DB] ?: 0
-//            }
     }
 
     override suspend fun updateVersion() {

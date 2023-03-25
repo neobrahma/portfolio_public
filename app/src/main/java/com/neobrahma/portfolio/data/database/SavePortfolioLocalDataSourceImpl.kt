@@ -57,9 +57,8 @@ class SavePortfolioLocalDataSourceImpl @Inject constructor(
                 }
             }
 
-            var clientId = idCompany * 100
             company.clients.forEach { client ->
-                clientId++
+                val clientId = idCompany * 1000 + client.id
                 room.insertClient(
                     Client(
                         clientId,

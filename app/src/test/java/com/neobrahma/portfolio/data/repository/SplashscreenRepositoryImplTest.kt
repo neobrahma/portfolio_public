@@ -68,11 +68,37 @@ class SplashscreenRepositoryImplTest {
     }
 
     @Test
-    fun whenCheckoutPortfolio_DSShouldCalladdAllCompany() {
+    fun whenCheckoutPortfolio_DSShouldCallAllCompany() {
         runBlocking {
             whenever(checkoutPortfolioDataSource.checkoutPortfolio()).thenReturn(portfolioDAO)
             repository.checkoutPortfolio()
             verify(savePortfolioDataSource).addAllCategory(portfolioDAO.categories)
+        }
+    }
+
+    @Test
+    fun whenGetLocalVersion_DSShouldGetLocalVersion() {
+        runBlocking {
+            whenever(versionLocalDataSource.getVersion()).thenReturn(1)
+            repository.getLocalVersion()
+            verify(versionLocalDataSource).getVersion()
+        }
+    }
+
+    @Test
+    fun whenGetRemoteVersion_DSShouldGetRemoteVersion() {
+        runBlocking {
+            whenever(versionRemoteDataSource.getVersion()).thenReturn(1)
+            repository.getRemoteVersion()
+            verify(versionRemoteDataSource).getVersion()
+        }
+    }
+
+    @Test
+    fun whenUpdateVersion_DSShouldUpdateVersion() {
+        runBlocking {
+            repository.updateVersion()
+            verify(versionLocalDataSource).updateVersion()
         }
     }
 }
