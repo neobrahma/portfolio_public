@@ -37,14 +37,7 @@ se compose de 4 packages
 contient tt les modules pour l'injection de dependance
 
 ## presentation
-Contient les differents ecrans, il y a 4 ecrans,
-
-le splashscreen, 
-
-le tree, c'est une representation de mon CV sous la forme d'un "arbre GIT", dans lequel on peut cliquer sur les clients/projets pour acceder au detail.
-filter, ou on pourra filter l'arbre en fonction de la stack technique
-
-information, contenant diverses informations et des camemberts par rapport au stack technique par categorie
+Contient les differents ecrans, il y a 4 activity
 
 chaque ecran se compose generalement d'une activity, un view model, 1 ou plusieur *Screen (fonction composable pour definir les écrans), un mapper qui convertir un objet domain en objet UI.
 
@@ -55,6 +48,28 @@ contient les differents usecases, un package repository qui contient les contrat
 
 ## data
 contient les implementations des contrats d'interface, des dataSources et leur implementations, la gestion de la database via room et des datastore.
+
+# TUs
+
+## TUs réalisés : 
+
+-domain.usecase -> dans le dossier test
+
+-data.repository -> dans le dossier test
+
+-data.database -> les dataSources dans le dossier androidTest
+
+-data.datastore -> les dataSources dans le dossier androidTest
+
+## TUs TODO :
+
+-Mapper
+
+-ViewModel
+
+# CI/CD
+
+Decouverte & mise en place d'une CI/CD via BitRise.
 
 # TODO
 
@@ -71,5 +86,4 @@ Sur l'ecran tree, faut que je verifie quelque chose, mais il arrive que mon arbr
 
 Concernant les icones "Android", les icones seront stocké sur dans le web et non dans l'application comme maintenant, et seront chargé via une librairie equivalente à Picasso mais pour Compose.
 
-Apres cela, j'ai prevu de transformer mon projet sous une archi modulaire avec du deeplinking, et realiser mes TUs en derniers.
-Puis decouvrir Bitrise pour l'integration continue et la publication de mon application sur le store.
+Apres cela, j'ai prevu de transformer mon projet sous une archi modulaire avec du deeplinking
