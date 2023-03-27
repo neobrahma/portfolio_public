@@ -1,5 +1,24 @@
 # portfolio
 
+Application permettant de visualiser mon CV sous la forme d'un "arbre git",
+Se compose de 4 ecrans :
+
+-Splashscreen : recupere le backend pour les enregistrer dans une database room.
+
+-Tree : representation de mon CV
+
+| Companies | Company | Client | Project |
+|---|----|---|---|
+| ![1](https://user-images.githubusercontent.com/96651172/227859899-9f6166a9-21a6-45b9-ba99-67e601b346e0.png) | ![2](https://user-images.githubusercontent.com/96651172/227859938-6b51e2bd-b46c-45ba-ace0-cab5ed0289c8.png) | ![3](https://user-images.githubusercontent.com/96651172/227859992-9b8ecd84-786a-41df-bf2c-ffe1cf6e2b55.png) | ![4](https://user-images.githubusercontent.com/96651172/227860047-ef7304eb-41ce-4ef4-aa4c-3e14c2d4f1c5.png) |
+
+
+-Filter : possibilité de filtrer le CV par stack technique
+
+-Information : diverses informations + statistique des stacks par categories
+| Filter | Information |
+|----|----|
+| ![6](https://user-images.githubusercontent.com/96651172/227860453-3aadd4ab-c6cd-4eb3-ac08-9463af7cda39.png) | ![7](https://user-images.githubusercontent.com/96651172/227860413-16102f64-dd7a-4018-82ef-f22b4df14004.png) |
+
 Technologies utilisées : Kotlin, Compose, Navigation compose, Coroutine, Flow, Hilt, datastore, room.
 
 Archi : MVVM, Clean archi.
