@@ -3,14 +3,11 @@ package com.neobrahma.portfolio.presentation.tree
 import com.neobrahma.portfolio.domain.model.ClientData
 import com.neobrahma.portfolio.domain.model.CompanyData
 import com.neobrahma.portfolio.domain.model.ProjectData
-import com.neobrahma.portfolio.domain.model.StackData
 import com.neobrahma.portfolio.presentation.Utils
 import com.neobrahma.portfolio.presentation.tree.model.Tree
 import com.neobrahma.portfolio.ui.R
 import com.neobrahma.portfolio.ui.component.dot.DotStateView
 import com.neobrahma.portfolio.ui.component.item.primary.PrimaryItemUI
-import com.neobrahma.portfolio.ui.component.item.stack.StackItemUI
-import com.neobrahma.portfolio.ui.component.stack.StackUI
 
 abstract class TreeMapper(
     protected val utils: Utils

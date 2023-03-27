@@ -25,7 +25,7 @@ class Utils @Inject constructor(
         }
     }
 
-    fun getColor(colorId : Int) : Int {
+    fun getColor(colorId: Int): Int {
         return ContextCompat.getColor(context, colorId)
     }
 

@@ -8,7 +8,6 @@ data class PortfolioDAO(
     val companies: List<CompanyDAO>,
 )
 
-
 val categories = listOf(
     CategoryDAO(1, "OS"),
     CategoryDAO(2, "IDEs"),

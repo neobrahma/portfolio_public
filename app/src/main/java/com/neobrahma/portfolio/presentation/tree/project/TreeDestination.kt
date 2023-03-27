@@ -1,30 +1,30 @@
 package com.neobrahma.portfolio.presentation.tree.project
 
 interface TreeDestination {
-    val destination : String
+    val destination: String
 }
 
-object CompaniesDestination : TreeDestination{
+object CompaniesDestination : TreeDestination {
     override val destination: String
         get() = "companies"
 }
 
-object CompanyDestination : TreeDestination{
+object CompanyDestination : TreeDestination {
     override val destination: String
         get() = "company"
 }
 
-object ClientDestination : TreeDestination{
+object ClientDestination : TreeDestination {
     override val destination: String
         get() = "company/client"
 }
 
-object ProjectDestination : TreeDestination{
+object ProjectDestination : TreeDestination {
     override val destination: String
         get() = "company/project"
 }
 
-object ProjectClientDestination : TreeDestination{
+object ProjectClientDestination : TreeDestination {
     override val destination: String
         get() = "company/client/project"
 }

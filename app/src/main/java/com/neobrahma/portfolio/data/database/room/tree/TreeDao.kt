@@ -1,11 +1,11 @@
 package com.neobrahma.portfolio.data.database.room.tree
 
 import androidx.room.Dao
-import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
-import com.neobrahma.portfolio.data.database.room.table.*
-import com.neobrahma.portfolio.data.database.room.table.crossref.ProjectStackCrossRef
+import com.neobrahma.portfolio.data.database.room.table.Category
+import com.neobrahma.portfolio.data.database.room.table.Client
+import com.neobrahma.portfolio.data.database.room.table.Company
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -35,8 +35,8 @@ interface TreeDao {
     fun getSelectedStacks(): Flow<List<Int>>
 
     @Query("SELECT DISTINCT projectId FROM ProjectStackCrossRef WHERE stackId IN (:stacks)")
-    suspend fun getProjectFiltered(stacks : List<Int>): List<Int>
+    suspend fun getProjectFiltered(stacks: List<Int>): List<Int>
 
     @Query("SELECT * FROM Category WHERE categoryId IN (:categories)")
-    suspend fun getCategories(categories : Set<Int>): List<Category>
+    suspend fun getCategories(categories: Set<Int>): List<Category>
 }

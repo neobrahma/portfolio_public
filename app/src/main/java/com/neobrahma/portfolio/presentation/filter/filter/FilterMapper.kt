@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class FilterMapper @Inject constructor(
     private val utils: Utils
-){
+) {
     fun mapperCategoryToUI(categories: List<CategoryData>): List<FilterUi> {
         return categories.map { data ->
             FilterUi(

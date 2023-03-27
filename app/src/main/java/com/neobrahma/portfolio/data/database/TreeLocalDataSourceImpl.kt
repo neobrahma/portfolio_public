@@ -1,9 +1,9 @@
 package com.neobrahma.portfolio.data.database
 
 import com.neobrahma.portfolio.data.TreeDataSource
-import com.neobrahma.portfolio.data.database.room.tree.ProjectWithStacksAndTasks
 import com.neobrahma.portfolio.data.database.room.table.Client
 import com.neobrahma.portfolio.data.database.room.table.Company
+import com.neobrahma.portfolio.data.database.room.tree.ProjectWithStacksAndTasks
 import com.neobrahma.portfolio.data.database.room.tree.TreeDao
 import com.neobrahma.portfolio.domain.model.ClientData
 import com.neobrahma.portfolio.domain.model.CompanyData

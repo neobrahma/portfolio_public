@@ -6,6 +6,6 @@ data class CompanyData(
     val logo: String,
     val date: String,
     val city: String,
-    val clients : List<ClientData>,
+    val clients: List<ClientData>,
     val projects: List<ProjectData>
 )

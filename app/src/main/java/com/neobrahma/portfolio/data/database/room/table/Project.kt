@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class Project(
     @PrimaryKey val projectId: Int,
-    val ownerId : Int,
+    val ownerId: Int,
     val name: String,
     val logo: String,
     val role: String,

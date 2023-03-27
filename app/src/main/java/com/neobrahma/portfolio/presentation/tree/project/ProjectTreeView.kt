@@ -62,7 +62,7 @@ fun DisplayTreeView(
                                         launchSingleTop = true
                                     }
                                 }
-                                else ->{
+                                else -> {
 
                                 }
                             }

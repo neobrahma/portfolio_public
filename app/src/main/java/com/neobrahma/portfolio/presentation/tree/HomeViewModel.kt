@@ -6,11 +6,10 @@ import com.neobrahma.portfolio.domain.model.CompanyData
 import com.neobrahma.portfolio.domain.usecase.tree.GetCompaniesUseCase
 import com.neobrahma.portfolio.presentation.tree.client.ClientMapper
 import com.neobrahma.portfolio.presentation.tree.client.ClientUiState
-import com.neobrahma.portfolio.presentation.tree.company.CompanyMapper
 import com.neobrahma.portfolio.presentation.tree.companies.CompaniesMapper
 import com.neobrahma.portfolio.presentation.tree.companies.CompaniesUiState
+import com.neobrahma.portfolio.presentation.tree.company.CompanyMapper
 import com.neobrahma.portfolio.presentation.tree.company.CompanyUiState
-import com.neobrahma.portfolio.presentation.tree.model.Tree
 import com.neobrahma.portfolio.presentation.tree.project.ProjectClientMapper
 import com.neobrahma.portfolio.presentation.tree.project.ProjectMapper
 import com.neobrahma.portfolio.presentation.tree.project.ProjectUiState
@@ -32,7 +31,8 @@ class HomeViewModel @Inject constructor(
     private val getCompaniesUseCase: GetCompaniesUseCase
 ) : ViewModel() {
 
-    private val _uiStateCompanies = MutableStateFlow<CompaniesUiState>(CompaniesUiState.DisplayLoader)
+    private val _uiStateCompanies =
+        MutableStateFlow<CompaniesUiState>(CompaniesUiState.DisplayLoader)
     val uiStateCompanies: StateFlow<CompaniesUiState> = _uiStateCompanies.asStateFlow()
 
     private val _uiStateCompany = MutableStateFlow<CompanyUiState>(CompanyUiState.DisplayLoader)
@@ -44,14 +44,15 @@ class HomeViewModel @Inject constructor(
     private val _uiStateClient = MutableStateFlow<ClientUiState>(ClientUiState.DisplayLoader)
     val uiStateClient: StateFlow<ClientUiState> = _uiStateClient.asStateFlow()
 
-    private val _uiStateProjectClient = MutableStateFlow<ProjectUiState>(ProjectUiState.DisplayLoader)
+    private val _uiStateProjectClient =
+        MutableStateFlow<ProjectUiState>(ProjectUiState.DisplayLoader)
     val uiStateProjectClient: StateFlow<ProjectUiState> = _uiStateProjectClient.asStateFlow()
 
     private val companiesUI = mutableListOf<CompanyData>()
 
     fun initHomeScreen() {
         viewModelScope.launch(Dispatchers.IO) {
-            getCompaniesUseCase().collect{
+            getCompaniesUseCase().collect {
                 companiesUI.clear()
                 companiesUI.addAll(it)
                 _uiStateCompanies.value = CompaniesUiState.DisplayTree(
@@ -123,7 +124,13 @@ class HomeViewModel @Inject constructor(
                 }[0]
 
                 _uiStateProjectClient.value =
-                    ProjectUiState.DisplayTree(projectClientMapper.mapperProjectToUI(company, client, project))
+                    ProjectUiState.DisplayTree(
+                        projectClientMapper.mapperProjectToUI(
+                            company,
+                            client,
+                            project
+                        )
+                    )
             }
         }
     }

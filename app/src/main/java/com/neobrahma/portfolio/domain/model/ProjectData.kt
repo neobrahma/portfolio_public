@@ -7,6 +7,6 @@ data class ProjectData(
     var role: String,
     var context: String,
     var tasks: List<String>,
-    var categories : Map<Int, String>,
+    var categories: Map<Int, String>,
     var stacks: List<StackData>
 )

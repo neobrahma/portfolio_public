@@ -8,7 +8,7 @@ class CheckoutPortfolioUseCase @Inject constructor(
     private val splashscreenRepository: SplashscreenRepository
 ) {
 
-    suspend operator fun invoke(isInternet : Boolean): CheckoutPortfolioState {
+    suspend operator fun invoke(isInternet: Boolean): CheckoutPortfolioState {
         val localVersion = splashscreenRepository.getLocalVersion()
         if (localVersion == 0) {
             return if (isInternet) {

@@ -17,16 +17,16 @@ sealed class Tree(
 
     class ContextItem(
         dotUI: DotUI,
-        val content : ContextItemUI
+        val content: ContextItemUI
     ) : Tree(dotUI)
 
     class TaskItem(
         dotUI: DotUI,
-        val content : TaskItemUI
+        val content: TaskItemUI
     ) : Tree(dotUI)
 
     class StackItem(
         dotUI: DotUI,
-        val content : List<List<StackItemUI>>
+        val content: List<List<StackItemUI>>
     ) : Tree(dotUI)
 }

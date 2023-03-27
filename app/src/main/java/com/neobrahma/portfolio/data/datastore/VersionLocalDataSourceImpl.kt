@@ -9,13 +9,13 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class VersionLocalDataSourceImpl @Inject constructor(
- private val dataStore : DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>
 ) : VersionLocalDataSource {
 
     private val VERSION_REMOTE_DB = intPreferencesKey("versionRemoteDB")
 
     override suspend fun getVersion(): Int {
-        return dataStore.data.first()[VERSION_REMOTE_DB]?:0
+        return dataStore.data.first()[VERSION_REMOTE_DB] ?: 0
     }
 
     override suspend fun updateVersion() {

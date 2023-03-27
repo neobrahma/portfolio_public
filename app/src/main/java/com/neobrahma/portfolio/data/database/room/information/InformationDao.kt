@@ -1,7 +1,8 @@
 package com.neobrahma.portfolio.data.database.room.information
 
-import androidx.room.*
-import com.neobrahma.portfolio.data.database.room.table.*
+import androidx.room.Dao
+import androidx.room.Query
+import com.neobrahma.portfolio.data.database.room.table.Category
 
 @Dao
 interface InformationDao {
@@ -20,5 +21,5 @@ interface InformationDao {
                 " result.stackId = stack.stackId\n" +
                 " GROUP BY result.stackId"
     )
-    suspend fun getStaticalByCategory(categoryId : Int) : List<StackLabelWithCount>
+    suspend fun getStaticalByCategory(categoryId: Int): List<StackLabelWithCount>
 }

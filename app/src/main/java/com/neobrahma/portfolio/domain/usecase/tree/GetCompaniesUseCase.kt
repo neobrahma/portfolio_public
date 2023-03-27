@@ -1,7 +1,7 @@
 package com.neobrahma.portfolio.domain.usecase.tree
 
-import com.neobrahma.portfolio.domain.repository.TreeRepository
 import com.neobrahma.portfolio.domain.model.CompanyData
+import com.neobrahma.portfolio.domain.repository.TreeRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
